@@ -1,0 +1,75 @@
+import 'package:edc_v2/core/api/api_client.dart';
+import 'package:edc_v2/features/auth/data/datasource/auth_remote_datasource.dart';
+import 'package:edc_v2/features/auth/data/datasource/user_remote_datasource.dart';
+import 'package:edc_v2/features/auth/data/repository/auth_repository_impl.dart';
+import 'package:edc_v2/features/auth/data/repository/user_repository_impl.dart';
+import 'package:edc_v2/features/auth/domain/repository/auth_repository.dart';
+import 'package:edc_v2/features/auth/domain/repository/user_repository.dart';
+import 'package:edc_v2/features/auth/presentation/bloc/user_bloc.dart';
+import 'package:edc_v2/features/main/data/datasource/application_remote_datasource.dart';
+import 'package:edc_v2/features/main/data/datasource/category_remote_datasource.dart';
+import 'package:edc_v2/features/main/data/repository/application_repository_impl.dart';
+import 'package:edc_v2/features/main/data/repository/category_repository_impl.dart';
+import 'package:edc_v2/features/main/domain/repository/application_repository.dart';
+import 'package:edc_v2/features/main/domain/repository/category_repository.dart';
+import 'package:edc_v2/features/main/presentation/bloc/main_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+var getIt = GetIt.instance;
+
+void setup() {
+  registerGoogleSignIn();
+  registerApiClient();
+  registerDatasources();
+  registerRepositories();
+  registerBloc();
+}
+
+void registerGoogleSignIn() {
+  getIt.registerSingleton(GoogleSignIn());
+}
+
+void registerApiClient() {
+  getIt.registerSingleton(ApiClient());
+}
+
+void registerDatasources() {
+  var dio = getIt<ApiClient>().getDio();
+  var dioTokenInterceptor = getIt<ApiClient>().getDio(tokenInterceptor: true);
+  getIt.registerSingleton(AuthRemoteDatasource(dio: dio));
+  getIt.registerSingleton(UserRemoteDatasource(dio: dioTokenInterceptor));
+
+  getIt.registerSingleton(CategoryRemoteDatasource(dio: dioTokenInterceptor));
+  getIt.registerSingleton(
+    ApplicationRemoteDatasource(dio: dioTokenInterceptor),
+  );
+}
+
+void registerRepositories() {
+  getIt.registerSingleton<AuthRepository>(
+    AuthRepositoryImpl(authRemoteDatasource: getIt(), googleSignIn: getIt()),
+  );
+
+  getIt.registerSingleton<UserRepository>(
+    UserRepositoryImpl(userRemoteDatasource: getIt()),
+  );
+
+  getIt.registerSingleton<CategoryRepository>(
+    CategoryRepositoryImpl(categoryRemoteDatasource: getIt()),
+  );
+
+  getIt.registerSingleton<ApplicationRepository>(
+    ApplicationRepositoryImpl(applicationRemoteDatasource: getIt()),
+  );
+}
+
+void registerBloc() {
+  getIt.registerFactory(
+    () => UserBloc(authRepository: getIt(), userRepository: getIt()),
+  );
+
+  getIt.registerFactory(
+    () => MainBloc(categoryRepository: getIt(), applicationRepository: getIt()),
+  );
+}

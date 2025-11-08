@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "376117705427",
+    "project_id": "e-donation-community-v2",
+    "storage_bucket": "e-donation-community-v2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376117705427:android:78ca6105bfcf57c11eb226",
+        "android_client_info": {
+          "package_name": "com.example.edc_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376117705427-o43hau1viidnfq045pgl47p5m7seitj7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.edc_v2",
+            "certificate_hash": "0d7d7f744f6c8cb9d52ff604c3e0e9d51e29ac05"
+          }
+        },
+        {
+          "client_id": "376117705427-qvi5jfsagmheg8sroj0kh3b4vph4omn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0Q_DzH4L5a2_UIaNFOWGIxQNXtpNV-cc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "376117705427-qvi5jfsagmheg8sroj0kh3b4vph4omn8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "376117705427-5i12d7jmoehq22p95g54lrfqg5k4unsr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.edcV2"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
