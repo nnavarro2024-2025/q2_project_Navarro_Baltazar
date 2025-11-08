@@ -47,14 +47,14 @@ class AuthPage extends StatelessWidget {
                           //         fontWeight: FontWeight.w900,
                           //       ),
                           // ),
-                          
+
                           Text(
                             "EDC",
                             style: TextStyle(
                               fontSize: 72,
                               fontWeight: FontWeight.bold,
                               color:
-                                  Colors.green, // Use a recycling green color
+                                  Colors.green,
                               letterSpacing: 2,
                             ),
                           ),
