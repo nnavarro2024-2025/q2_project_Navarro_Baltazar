@@ -13,6 +13,7 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
   photoURL: json['photoURL'] as String,
   totalDonated: (json['totalDonated'] as num?)?.toInt(),
   projectsSupported: (json['projectsSupported'] as num?)?.toInt(),
+  totalDonateddevice: (json['totalDonateddevice'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>

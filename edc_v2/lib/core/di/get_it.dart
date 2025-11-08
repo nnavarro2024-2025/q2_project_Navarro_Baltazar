@@ -13,6 +13,15 @@ import 'package:edc_v2/features/main/data/repository/category_repository_impl.da
 import 'package:edc_v2/features/main/domain/repository/application_repository.dart';
 import 'package:edc_v2/features/main/domain/repository/category_repository.dart';
 import 'package:edc_v2/features/main/presentation/bloc/main_bloc.dart';
+import 'package:edc_v2/features/main/presentation/bloc/single_application_bloc.dart';
+import 'package:edc_v2/features/main/presentation/bloc/payment_bloc.dart';
+import 'package:edc_v2/features/history/presentation/bloc/history_bloc.dart';
+import 'package:edc_v2/features/history/data/datasource/history_remote_datasource.dart';
+import 'package:edc_v2/features/history/data/repository/history_repository_impl.dart';
+import 'package:edc_v2/features/auth/data/datasource/payment_remote_datasource.dart';
+import 'package:edc_v2/features/auth/data/repository/payment_repository_impl.dart';
+import 'package:edc_v2/features/history/domain/repository/history_repository.dart';
+import 'package:edc_v2/features/main/data/repository/payment_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -44,6 +53,13 @@ void registerDatasources() {
   getIt.registerSingleton(
     ApplicationRemoteDatasource(dio: dioTokenInterceptor),
   );
+  // register history and payment datasources
+  getIt.registerSingleton(
+    HistoryRemoteDatasource(dio: dioTokenInterceptor),
+  );
+  getIt.registerSingleton(
+    PaymentRemoteDatasource(dio: dioTokenInterceptor),
+  );
 }
 
 void registerRepositories() {
@@ -62,6 +78,14 @@ void registerRepositories() {
   getIt.registerSingleton<ApplicationRepository>(
     ApplicationRepositoryImpl(applicationRemoteDatasource: getIt()),
   );
+  // register history and payment repositories
+  getIt.registerSingleton<HistoryRepository>(
+    HistoryRepositoryImpl(historyRemoteDatasource: getIt()),
+  );
+
+  getIt.registerSingleton<PaymentRepository>(
+    PaymentRepositoryImpl(paymentRemoteDatasource: getIt()),
+  );
 }
 
 void registerBloc() {
@@ -71,5 +95,19 @@ void registerBloc() {
 
   getIt.registerFactory(
     () => MainBloc(categoryRepository: getIt(), applicationRepository: getIt()),
+  );
+  // single application bloc
+  getIt.registerFactory(
+    () => SingleApplicationBloc(applicationRepository: getIt()),
+  );
+
+  // payment bloc
+  getIt.registerFactory(
+    () => PaymentBloc(paymentRepository: getIt()),
+  );
+
+  // history bloc
+  getIt.registerFactory(
+    () => HistoryBloc(historyRepository: getIt()),
   );
 }

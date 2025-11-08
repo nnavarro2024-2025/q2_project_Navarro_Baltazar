@@ -11,6 +11,7 @@ class UserEntity {
   final String photoURL;
   final int? totalDonated;
   final int? projectsSupported;
+  final int? totalDonateddevice;
 
   UserEntity({
     required this.id,
@@ -18,7 +19,8 @@ class UserEntity {
     required this.displayName,
     required this.photoURL,
     this.totalDonated,
-    this.projectsSupported});
+    this.projectsSupported,
+    this.totalDonateddevice});
 
     Map<String, dynamic> toJson() => _$UserEntityToJson(this);
     factory UserEntity.fromJson(Map<String, dynamic> json) => _$UserEntityFromJson(json);

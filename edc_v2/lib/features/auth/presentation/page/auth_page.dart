@@ -78,7 +78,7 @@ class AuthPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 40),
                           Text(
-                            '''Be a hero in someone's story. Join now''',
+                            '''Join the EDC community — where your small act can change someone’s future.''',
                             style: Theme.of(context).textTheme.headlineSmall,
                             textAlign: TextAlign.center,
                           ),

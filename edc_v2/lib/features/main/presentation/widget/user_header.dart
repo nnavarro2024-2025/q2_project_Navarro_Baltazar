@@ -97,8 +97,8 @@ class UserHeader extends StatelessWidget {
                 Text(
                   'Hello, ${state.userEntity?.displayName}',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: AppColors.surface,
-                      ),
+                    color: AppColors.surface,
+                  ),
                 ),
                 const Spacer(),
                 IconButton(
@@ -107,40 +107,50 @@ class UserHeader extends StatelessWidget {
                   },
                   icon: const Icon(Icons.logout),
                   color: AppColors.surface,
-                )
+                ),
               ],
             ),
             Text(
               'Projects supported: ${state.userEntity?.projectsSupported ?? 0}',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.surface,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.surface),
             ),
-            const SizedBox(
-              height: 8,
-            ),
+            const SizedBox(height: 8),
             Text(
-              'You`ve donated: ${state.userEntity?.totalDonated ?? 0}\Device(s) ♻️',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.surface,
-                  ),
+              'You`ve donated: ₱ ${state.userEntity?.totalDonated ?? 0}',
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.surface),
+            ),
+            const SizedBox(height: 8),
 
+
+            // Display device donations
+            Text(
+              'You`ve donated: ${state.userEntity?.totalDonateddevice ?? 0} Device(s) ♻️',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.surface),
             ),
-            const SizedBox(
-              height: 8,
-            ),
+
+
+            const SizedBox(height: 8),
+
+
             SizedBox(
               width: 120,
               child: DefaultButton(
                 text: 'History',
-                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
                 backgroundColor: AppColors.secondary,
-                onPressed: (){
+                onPressed: () {
                   context.push(HistoryPage.path);
                 },
                 textColor: AppColors.text,
               ),
-            )
+            ),
           ],
         );
       },

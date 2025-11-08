@@ -8,8 +8,18 @@ class DefaultTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final Function(String)? onChanged;
   final Widget? prefixIcon;
+    final String? Function(String?)? validator;
 
-  const DefaultTextField({super.key, this.hintText, this.initialValue,this.keyboardType,this.prefixText,this.onChanged, this.prefixIcon});
+    const DefaultTextField({
+      super.key,
+      this.hintText,
+      this.initialValue,
+      this.keyboardType,
+      this.prefixText,
+      this.onChanged,
+      this.prefixIcon,
+      this.validator,
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +28,7 @@ class DefaultTextField extends StatelessWidget {
       onChanged: onChanged,
       initialValue: initialValue,
       keyboardType: keyboardType,
+       validator: validator,
       decoration: InputDecoration(
         filled: true,
         fillColor: AppColors.onSurface,
