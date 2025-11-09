@@ -6,7 +6,7 @@ final dummyUser = UserEntity(
   email: 'nnavarro_230000002875@gmail.com',
   displayName: 'Nikko Angelo Navarro',
   photoURL: 'https://ui-avatars.com/api/?name=Nikko+Angelo+Navarro',
-  totalDonated: 15000000,       // Total money donated in PHP (150,000.00 PHP)
-  totalDonateddevice: 8,        // Total number of devices donated
-  projectsSupported: 5,         // Number of projects/organizations supported
+  totalDonated: 15000000,  
+  totalDonateddevice: 8,     
+  projectsSupported: 5,   
 );
